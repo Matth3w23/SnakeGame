@@ -2,23 +2,12 @@
 #include<vector>
 #include<queue>
 
+#include "GridDefinitions.h"
 
 enum GameState {
 	GAME_ACTIVE,
 	GAME_OVER
 };
-
-enum GridState {
-	EMPTY,
-	CHERRY,
-	SNAKE
-};
-
-struct GridCoord {
-	unsigned int x = 0;
-	unsigned int y = 0;
-};
-
 
 class Game {
 public:
