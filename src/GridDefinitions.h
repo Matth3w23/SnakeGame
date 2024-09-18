@@ -6,7 +6,14 @@ enum GridState {
 	SNAKE
 };
 
+enum GridDirection {
+	UP,
+	RIGHT,
+	DOWN,
+	LEFT
+};
+
 struct GridCoord {
-	unsigned int x = 0;
-	unsigned int y = 0;
+	int x = 0;
+	int y = 0;
 };
