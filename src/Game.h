@@ -3,6 +3,7 @@
 #include<queue>
 
 #include "GridDefinitions.h"
+#include "Snake.h"
 
 enum GameState {
 	GAME_ACTIVE,
@@ -12,14 +13,20 @@ enum GameState {
 class Game {
 public:
 	// base game state
-	bool Keys[1024];
+	bool Keys[1024] = { false };
 	//constructor and deconstructor
 	Game(unsigned int width = 10, unsigned int height = 10, unsigned int length = 3);
 	~Game();
 
+
+	void init();
 	//initialisation
-	//	render create snake(s)
+	// empty grid
+	// refill grid
+	// destroy snakes?
+	//	create snake(s)
 	//	render all snakes
+
 
 	//game loop
 	//input
@@ -31,7 +38,18 @@ public:
 	// else move all snakes
 	// make new cherry if necessary (can be checked if execute move returns {-1,-1}
 	//		spawn cherry randomly, or gather all blanks and spawn using that? Randomly should be expected faster I think?
-	//render new squares
+	// render new squares
+
+	void processInput(float dt);
+	//increment counter, call step game when needed?
+	void update(float dt);
+	//move all snakes
+	void stepGame();
+
+	bool getNewCherry(std::vector<Snake>& snakes);
+
+	//reset game
+	void reset();
 private:
 	unsigned int gameWidth;
 	unsigned int gameHeight;
@@ -39,5 +57,5 @@ private:
 
 	std::vector<std::vector<GridState>> grid;
 
-	//snake
+	std::vector<Snake> snakes;
 };
