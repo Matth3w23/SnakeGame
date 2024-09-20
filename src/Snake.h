@@ -46,7 +46,7 @@ public:
 
 	//changes snake direction
 	//returns true if successfully changed direction, false otherwise
-	bool TurnSnake(GridDirection turnDirection);
+	bool turnSnake(GridDirection turnDirection);
 
 	//checks if gridPosition would collide with snake, including moveToSpace
 	//returns true on collision
