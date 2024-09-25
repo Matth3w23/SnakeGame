@@ -1,10 +1,12 @@
 #pragma once
 #include<vector>
 #include<queue>
+#include <random>
 
 #include "GridDefinitions.h"
 #include "Snake.h"
 
+//not used yet
 enum GameState {
 	GAME_ACTIVE,
 	GAME_OVER
@@ -51,11 +53,23 @@ public:
 	//reset game
 	void reset();
 private:
+	float timeCounter = 0.0;
+	const float kStepTime = 0.5;
+
 	unsigned int gameWidth;
 	unsigned int gameHeight;
 	unsigned int startLength;
 
 	std::vector<std::vector<GridState>> grid;
+	std::vector<std::pair<GridCoord, GridState>> gridUpdates;
+	GridCoord cherryPos;
 
 	std::vector<Snake> snakes;
+
+	//random number stuff
+	std::random_device rd{};
+	std::seed_seq ss{ rd(), rd(), rd(), rd(), rd(), rd(), rd(), rd() };
+	std::mt19937 mt{ ss };
+	std::uniform_int_distribution<> widthRandom;
+	std::uniform_int_distribution<> heightRandom;
 };
