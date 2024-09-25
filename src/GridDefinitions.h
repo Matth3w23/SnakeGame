@@ -18,6 +18,7 @@ struct GridCoord {
 	int y = 0;
 };
 
-bool operator==(const GridCoord& lhs, const GridCoord& rhs) {
+//inline feels a bit of a bandaid fix?
+inline bool operator==(const GridCoord& lhs, const GridCoord& rhs) {
 	return (lhs.x == rhs.x) && (lhs.y == rhs.y);
 }

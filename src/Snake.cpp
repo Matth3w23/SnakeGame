@@ -100,7 +100,7 @@ void Snake::moveDataReset() {
 	willEatCherry = false;
 }
 
-bool Snake::TurnSnake(GridDirection turnDirection) {
+bool Snake::turnSnake(GridDirection turnDirection) {
 	//check snake is not turning directly around
 	if (turnDirection == (snakeDirection + 2) % 4) {
 		return false;
