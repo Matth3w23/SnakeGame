@@ -21,12 +21,15 @@
   <ItemGroup>
     <ClCompile Include="src\Game.cpp" />
     <ClCompile Include="src\glad.c" />
+    <ClCompile Include="src\shader.cpp" />
     <ClCompile Include="src\Snake.cpp" />
     <ClCompile Include="src\SnakeGame.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Game.h" />
     <ClInclude Include="src\GridDefinitions.h" />
+    <ClInclude Include="src\shader.h" />
+    <ClInclude Include="src\squareRenderer.h" />
     <ClInclude Include="src\Snake.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
