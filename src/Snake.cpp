@@ -110,10 +110,10 @@ bool Snake::turnSnake(GridDirection turnDirection) {
 	return true;
 }
 
-bool Snake::checkCollisionWithSelf(GridCoord gridCoord) {
+bool Snake::checkCollisionWithSelf(GridCoord gridCoord, bool includeMoveTo) {
 	int cherryModifier = (willEatCherry) ? 0 : -1; //probably could just have will eat cherry as an int
 
-	if ((gridCoord == moveToSpace) || //head on collision
+	if ((gridCoord == moveToSpace && includeMoveTo) || //head on collision
 		(!snakeBody.empty() && (find(snakeBody.begin(), snakeBody.end()+cherryModifier, gridCoord)) != snakeBody.end()+cherryModifier)
 		) {
 		return true;
