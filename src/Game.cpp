@@ -92,6 +92,7 @@ bool Game::getNewCherry(std::vector<Snake>& snakes) {
 
     //gets worse the longers the snake(s) is(are), may need a different method later
 
+    //TODO: also need to check snake isn't filling the screen (otherwise infinite loop...)
     bool collision = false;
     do {
         cherryPos = { widthRandom(mt), heightRandom(mt) };
@@ -104,6 +105,8 @@ bool Game::getNewCherry(std::vector<Snake>& snakes) {
     } while (collision);
 
     //mark new cherry pos to be updated/rendered
+
+    return true;
 }
 
 //TODO
