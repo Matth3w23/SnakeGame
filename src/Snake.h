@@ -48,9 +48,9 @@ public:
 	//returns true if successfully changed direction, false otherwise
 	bool turnSnake(GridDirection turnDirection);
 
-	//checks if gridPosition would collide with snake, including moveToSpace
+	//checks if gridPosition would collide with snake, including moveToSpace if includeMoveTo = true
 	//returns true on collision
-	bool checkCollisionWithSelf(GridCoord gridCoord);
+	bool checkCollisionWithSelf(GridCoord gridCoord, bool includeMoveTo = true);
 
 	//returns snake head (back of the queue)
 	GridCoord getSnakeHead();
