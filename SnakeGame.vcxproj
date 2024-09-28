@@ -24,6 +24,7 @@
     <ClCompile Include="src\shader.cpp" />
     <ClCompile Include="src\Snake.cpp" />
     <ClCompile Include="src\SnakeGame.cpp" />
+    <ClCompile Include="src\squareRenderer.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Game.h" />
@@ -31,6 +32,10 @@
     <ClInclude Include="src\shader.h" />
     <ClInclude Include="src\squareRenderer.h" />
     <ClInclude Include="src\Snake.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Shaders\squareShader.frag" />
+    <None Include="Assets\Shaders\squareShader.vert" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>
