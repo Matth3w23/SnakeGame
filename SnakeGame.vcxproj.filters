@@ -30,6 +30,9 @@
     <ClCompile Include="src\shader.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\squareRenderer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Game.h">
@@ -47,5 +50,9 @@
     <ClInclude Include="src\shader.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Shaders\squareShader.frag" />
+    <None Include="Assets\Shaders\squareShader.vert" />
   </ItemGroup>
 </Project>

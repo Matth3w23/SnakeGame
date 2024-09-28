@@ -6,7 +6,7 @@
 
 class SquareRenderer {
 public:
-	SquareRenderer();
+	SquareRenderer(int windowWidth, int windowHeight, int gameWidth, int gameHeight);
 
 	void init();
 
@@ -14,6 +14,13 @@ public:
 
 	void renderSquares(std::vector<GridCoord> coords);
 private:
+	unsigned int squareVAO;
 	Shader shader;
-	float vertices[];
+	//float vertices[];
+
+	const int kWindowWidth;
+	const int kWindowHeight;
+
+	int gameWidth;
+	int gameHeight;
 };
