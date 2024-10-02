@@ -74,18 +74,18 @@ void Snake::planMove(bool wrapAround) {
 	}
 }
 
-bool Snake::testMove(std::vector<Snake>& snakes) {
+bool Snake::testCrash(std::vector<Snake>& snakes) {
 	//check if offscreen
 	if (moveToSpace.x < 0 || moveToSpace.x >= gridWidth || moveToSpace.y < 0 || moveToSpace.y >= gridHeight) {
-		return false;
+		return true;
 	}
 	for (Snake& snake : snakes) {
-		if (snake.checkCollisionWithSelf(moveToSpace)) {
-			return false;
+		if (snake.checkCollisionWithSelf(moveToSpace, (&snake != this))) {
+			return true;
 		}
 	}
 
-	return true;
+	return false;
 
 }
 
@@ -117,10 +117,10 @@ bool Snake::turnSnake(GridDirection turnDirection) {
 }
 
 bool Snake::checkCollisionWithSelf(GridCoord gridCoord, bool includeMoveTo) {
-	int cherryModifier = (willEatCherry) ? 0 : -1; //probably could just have will eat cherry as an int
+	int cherryModifier = (willEatCherry) ? 0 : 1; //probably could just have will eat cherry as an int
 
 	if ((gridCoord == moveToSpace && includeMoveTo) || //head on collision
-		(!snakeBody.empty() && (find(snakeBody.begin(), snakeBody.end()+cherryModifier, gridCoord)) != snakeBody.end()+cherryModifier)
+		(!snakeBody.empty() && (find(snakeBody.begin()+cherryModifier, snakeBody.end(), gridCoord)) != snakeBody.end())
 		) {
 		return true;
 	} else {
