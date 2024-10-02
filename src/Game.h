@@ -49,7 +49,7 @@ public:
 	//move all snakes
 	void stepGame();
 
-	void renderGame(SquareRenderer& renderer);
+	void render(SquareRenderer& renderer);
 
 	bool getNewCherry(std::vector<Snake>& snakes);
 
