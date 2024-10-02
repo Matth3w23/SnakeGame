@@ -38,7 +38,7 @@ Snake::Snake(std::vector<std::vector<GridState>>& grid, GridCoord startPos, int 
 		if (grid[xPos][startPos.y] != EMPTY) { //check square is empty
 			throw std::exception("Error when initialising Snake: Snake overlaps non-empty square.");
 		}
-		snakeBody.push_back({ xPos, startPos.y });
+		snakeBody.push_front({ xPos, startPos.y });
 		grid[xPos][startPos.y] = SNAKE;
 	}
 }

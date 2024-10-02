@@ -80,6 +80,25 @@ void Game::stepGame() {
         return;
     }
 
+    //move snakes forward and empty moved out of spaces
+    std::vector<GridCoord> movedIntoCoords;
+    for (Snake& snake : snakes) {
+        GridCoord snakeMoveOutSpace = snake.executeMove(snakes);
+        if (snakeMoveOutSpace == GridCoord{-1, -1}) { //eaten cherry
+            ; //mark need to get new cherry
+        } else {
+            grid[snakeMoveOutSpace.x][snakeMoveOutSpace.y] = EMPTY;
+        }
+
+        movedIntoCoords.push_back(snake.getSnakeHead());
+    }
+
+    for (GridCoord coord : movedIntoCoords) {
+        grid[coord.x][coord.y] = SNAKE;
+    }
+
+    //then fill moved into spaces (to stop overwriting snakes with empty space)
+
     //TODO: Sort when got rendering and can see if works...
     //move snakes
     //generate new cherry if necessary

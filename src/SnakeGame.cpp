@@ -11,12 +11,14 @@ const int kWindowWidth = 800;
 const int kWindowHeight = 600;
 const int kGameWidth = 20;
 const int kGameHeight = 10;
+const int kSnakeStartLength = 5;
 
 //callback prototypes
 
 void framebufferSizeCallback(GLFWwindow* window, int width, int height);
 void key_callback(GLFWwindow* window, int key, int scancode, int action, int mode);
 
+Game game(kGameWidth, kGameHeight, kSnakeStartLength);
 //TODO
 //Game
 //GameRenderer
@@ -47,7 +49,7 @@ int main() {
 
 
 	//initialise game
-	Game game(kGameWidth, kGameHeight);
+
 	game.init();
 
 	//renderer
@@ -90,6 +92,13 @@ void key_callback(GLFWwindow* window, int key, int scancode, int action, int mod
 	//exit on escape
 	if (key == GLFW_KEY_ESCAPE && action == GLFW_PRESS) {
 		glfwSetWindowShouldClose(window, true);
+	}
+
+	if (key >= 0 && key < 1024) {
+		if (action == GLFW_PRESS)
+			game.Keys[key] = true;
+		else if (action == GLFW_RELEASE)
+			game.Keys[key] = false;
 	}
 }
 
