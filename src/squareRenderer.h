@@ -10,7 +10,7 @@ public:
 
 	void init();
 
-	void renderSquare(GridCoord coord);
+	void renderSquare(GridCoord coord, GridState state = EMPTY);
 
 	void renderSquares(std::vector<GridCoord> coords);
 private:
