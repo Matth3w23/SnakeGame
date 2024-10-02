@@ -86,7 +86,7 @@ void Game::stepGame() {
     //render updated squares
 }
 
-void Game::renderGame(SquareRenderer& renderer) {
+void Game::render(SquareRenderer& renderer) {
     renderer.renderGrid(grid);
 }
 
