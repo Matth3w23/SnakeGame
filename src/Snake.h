@@ -64,6 +64,7 @@ private:
 	//snake state
 	std::deque<GridCoord> snakeBody;
 	GridDirection snakeDirection;
+	GridDirection lastMovedDirection;
 
 	//state when planning a move
 	GridCoord moveToSpace = { -1,-1 };

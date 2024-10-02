@@ -10,7 +10,8 @@ char* SnakeInitialisationException::what() {
 
 Snake::Snake(std::vector<std::vector<GridState>>& grid, GridCoord startPos, int length, GridDirection startDirection) 
 	: grid(grid)
-	, snakeDirection(startDirection) {
+	, snakeDirection(startDirection)
+	, lastMovedDirection(GridDirection((snakeDirection + 2) % 4)) {
 
 	//TODO: catch exceptions in main/other
 
@@ -90,6 +91,7 @@ bool Snake::testMove(std::vector<Snake>& snakes) {
 
 GridCoord Snake::executeMove(std::vector<Snake>& snakes) {
 	snakeBody.push_back(moveToSpace);
+	lastMovedDirection = snakeDirection;
 	if (willEatCherry) {
 		return { -1,-1 };
 	} else {
@@ -106,7 +108,7 @@ void Snake::moveDataReset() {
 
 bool Snake::turnSnake(GridDirection turnDirection) {
 	//check snake is not turning directly around
-	if (turnDirection == (snakeDirection + 2) % 4) {
+	if (turnDirection == (lastMovedDirection + 2) % 4) {
 		return false;
 	}
 
