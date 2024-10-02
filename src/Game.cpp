@@ -1,5 +1,6 @@
-#include "GLFW/glfw3.h"
 #include "Game.h"
+#include "GLFW/glfw3.h"
+
 
 Game::Game(unsigned int width, unsigned int height, unsigned int length)
     : gameWidth(width)
