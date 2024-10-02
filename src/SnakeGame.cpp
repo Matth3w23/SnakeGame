@@ -4,6 +4,8 @@
 #include <GLFW/glfw3.h>
 
 #include "squareRenderer.h"
+#include "Game.h"
+
 
 const int kWindowWidth = 800;
 const int kWindowHeight = 600;
@@ -45,23 +47,31 @@ int main() {
 
 
 	//initialise game
-	;
+	Game game(kGameWidth, kGameHeight);
+	game.init();
 
 	//renderer
 	SquareRenderer renderer = SquareRenderer(kWindowWidth, kWindowHeight, kGameWidth, kGameHeight);
 
+	float deltaT;
+	float lastFrameT = glfwGetTime();
 
 	//main loop
 	while (!glfwWindowShouldClose(window)) {
+		float curFrameT = glfwGetTime();
+		deltaT = curFrameT - lastFrameT;
+		lastFrameT = curFrameT;
+		
 		glfwPollEvents();
 
-
+		//handle input/update certain grid positions
+		game.processInput(deltaT);
 
 		//update game
-		//handle input/update certain grid positions
-		;
+		game.update(deltaT);
 		
 		//render grid
+		game.render(renderer);
 
 		glfwSwapBuffers(window);
 	}
