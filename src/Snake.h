@@ -33,8 +33,8 @@ public:
 	//calculates the moved into place and if snake has eaten a cherry
 	void planMove(bool wrapAround = false);
 
-	//check to see if the move will cause a crash
-	bool testMove(std::vector<Snake>& snakes);
+	//check to see if the move will cause a crash (true if crash)
+	bool testCrash(std::vector<Snake>& snakes);
 
 	//executes planned move
 	//returns the coord moved out of or {-1,-1} if eaten a cherry

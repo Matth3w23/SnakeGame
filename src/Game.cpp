@@ -73,7 +73,7 @@ void Game::stepGame() {
 
     bool crashed = false;
     for (Snake& snake : snakes) {
-        crashed = (snake.testMove(snakes) || crashed);
+        crashed = (snake.testCrash(snakes) || crashed);
     }
 
     if (crashed) {
@@ -91,6 +91,8 @@ void Game::stepGame() {
         }
 
         movedIntoCoords.push_back(snake.getSnakeHead());
+
+        snake.moveDataReset();
     }
 
     for (GridCoord coord : movedIntoCoords) {
