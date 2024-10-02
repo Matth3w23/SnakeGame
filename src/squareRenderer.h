@@ -12,7 +12,9 @@ public:
 
 	void renderSquare(GridCoord coord, GridState state = EMPTY);
 
-	void renderSquares(std::vector<GridCoord> coords);
+	void renderGrid(std::vector<std::vector<GridState>>& grid);
+
+	//void renderSquares(std::vector<GridCoord> coords, std::vector<GridState> states);
 private:
 	unsigned int squareVAO;
 	Shader shader;

@@ -99,8 +99,18 @@ void SquareRenderer::renderSquare(GridCoord coord, GridState state) {
 	glBindVertexArray(0);
 }
 
+void SquareRenderer::renderGrid(std::vector<std::vector<GridState>>& grid) {
+	for (int x = 0; x < grid.size(); ++x) {
+		for (int y = 0; y < grid[0].size(); ++y) {
+			renderSquare({ x,y }, grid[x][y]);
+		}
+	}
+}
+
+/*
 void SquareRenderer::renderSquares(std::vector<GridCoord> coords) {
 }
+*/
 
 glm::vec3 gridStateToColour(GridState state) {
 	switch (state) {
