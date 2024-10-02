@@ -86,6 +86,10 @@ void Game::stepGame() {
     //render updated squares
 }
 
+void Game::renderGame(SquareRenderer& renderer) {
+    renderer.renderGrid(grid);
+}
+
 bool Game::getNewCherry(std::vector<Snake>& snakes) {
 
     //gets worse the longers the snake(s) is(are), may need a different method later

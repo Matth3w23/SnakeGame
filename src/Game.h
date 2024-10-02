@@ -5,6 +5,7 @@
 
 #include "GridDefinitions.h"
 #include "Snake.h"
+#include "squareRenderer.h"
 
 //not used yet
 enum GameState {
@@ -47,6 +48,8 @@ public:
 	void update(float dt);
 	//move all snakes
 	void stepGame();
+
+	void renderGame(SquareRenderer& renderer);
 
 	bool getNewCherry(std::vector<Snake>& snakes);
 
