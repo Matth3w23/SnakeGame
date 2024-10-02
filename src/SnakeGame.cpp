@@ -3,6 +3,8 @@
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
 
+#include "squareRenderer.h"
+
 const int kWindowWidth = 800;
 const int kWindowHeight = 600;
 
@@ -43,16 +45,25 @@ int main() {
 	//initialise game
 	;
 
+	//RENDERER TEST
+	SquareRenderer renderer = SquareRenderer(kWindowWidth, kWindowHeight, 20, 10);
+
 	//main loop
 	while (!glfwWindowShouldClose(window)) {
-		glfwSwapBuffers(window);
 		glfwPollEvents();
+
+
 
 		//update game
 		//handle input/update certain grid positions
 		;
-
+		
 		//render updated grid positions?
+
+		renderer.renderSquare({ 0,0 }, SNAKE);
+		renderer.renderSquare({ 19,9 }, CHERRY);
+
+		glfwSwapBuffers(window);
 	}
 
 	glfwTerminate();

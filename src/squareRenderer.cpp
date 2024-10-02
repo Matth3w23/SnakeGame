@@ -6,6 +6,8 @@
 #include "glm/glm.hpp"
 #include <glm/gtc/matrix_transform.hpp>
 
+glm::vec3 gridStateToColour(GridState state);
+
 SquareRenderer::SquareRenderer(int windowWidth, int windowHeight, int gameWidth, int gameHeight)
 	: kWindowWidth(windowWidth)
 	, kWindowHeight(windowHeight)
@@ -66,25 +68,31 @@ void SquareRenderer::init() {
 	glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices), indices, GL_STATIC_DRAW);
 
 	glEnableVertexAttribArray(0);
-	glVertexAttribPointer(0, 4, GL_FLOAT, GL_FALSE, 4 * sizeof(float), (void*)0);
+	glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, 2 * sizeof(float), (void*)0);
 	glBindBuffer(GL_ARRAY_BUFFER, 0);
 	glBindVertexArray(0);
 }
 
 //TODO: Colour
-void SquareRenderer::renderSquare(GridCoord coord) {
+void SquareRenderer::renderSquare(GridCoord coord, GridState state) {
 	shader.Use();
 
 	//always round up to avoid gaps?
-	int squareWidth = glm::ceil(static_cast<float>(kWindowWidth) / gameWidth);
-	int squareHeight = glm::ceil(static_cast<float>(kWindowHeight) / gameHeight);
+	float squareWidth = 2.0f / gameWidth;
+	float squareHeight = 2.0f / gameHeight;
 
 	glm::mat4 transform = glm::mat4(1.0f);
-	//TODO: make square appropriate size
+	
+	//operations are backwards due to matrix multiplication
+	transform = glm::translate(transform, glm::vec3(
+		2 * static_cast<float>(coord.x) / gameWidth,
+		2 * static_cast<float>(coord.y) / gameHeight,
+		0.0f)); //multiplied by 2 as grid is from -1 to 1
+	transform = glm::translate(transform, glm::vec3(-1.0f, -1.0f, 0.0f));
 	transform = glm::scale(transform, glm::vec3(squareWidth, squareHeight, 1.0f));
 
 	shader.SetMatrix4("transform", transform);
-	shader.SetVector3f("squareColour", glm::vec3(0.5f, 0.1f, 0.2f));
+	shader.SetVector3f("squareColour", gridStateToColour(state));
 
 	glBindVertexArray(squareVAO);
 	glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
@@ -92,4 +100,17 @@ void SquareRenderer::renderSquare(GridCoord coord) {
 }
 
 void SquareRenderer::renderSquares(std::vector<GridCoord> coords) {
+}
+
+glm::vec3 gridStateToColour(GridState state) {
+	switch (state) {
+	case SNAKE:
+		return glm::vec3(23.0f / 255, 46.0f / 255, 255.0f / 255);
+	case CHERRY:
+		return glm::vec3(255.0f / 255, 23.0f / 255, 31.0f / 255);
+	case EMPTY: //should be same as back colour
+		return glm::vec3(0, 0, 0);
+	default:
+		return glm::vec3(255.0f / 255, 23.0f / 255, 247.0f / 255);
+	}
 }
