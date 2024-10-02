@@ -84,7 +84,7 @@ void Game::stepGame() {
     //TODO: Sort when got rendering and can see if works...
     //move snakes
     //generate new cherry if necessary
-    //get updated squares
+    //get updated squares and update grid
     //render updated squares
 }
 

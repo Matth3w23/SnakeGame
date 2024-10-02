@@ -7,6 +7,8 @@
 
 const int kWindowWidth = 800;
 const int kWindowHeight = 600;
+const int kGameWidth = 20;
+const int kGameHeight = 10;
 
 //callback prototypes
 
@@ -45,8 +47,9 @@ int main() {
 	//initialise game
 	;
 
-	//RENDERER TEST
-	SquareRenderer renderer = SquareRenderer(kWindowWidth, kWindowHeight, 20, 10);
+	//renderer
+	SquareRenderer renderer = SquareRenderer(kWindowWidth, kWindowHeight, kGameWidth, kGameHeight);
+
 
 	//main loop
 	while (!glfwWindowShouldClose(window)) {
@@ -58,10 +61,7 @@ int main() {
 		//handle input/update certain grid positions
 		;
 		
-		//render updated grid positions?
-
-		renderer.renderSquare({ 0,0 }, SNAKE);
-		renderer.renderSquare({ 19,9 }, CHERRY);
+		//render grid
 
 		glfwSwapBuffers(window);
 	}
