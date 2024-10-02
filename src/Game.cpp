@@ -24,9 +24,7 @@ void Game::init() {
         grid.push_back(temp);
     }
 
-    snakes.push_back(Snake(grid));
-
-    //TODO: force render of snakes
+    snakes.push_back(Snake(grid, {startLength-1, gameHeight/2}, startLength));
 }
 
 void Game::processInput(float dt) {
