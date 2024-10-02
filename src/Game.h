@@ -56,9 +56,9 @@ private:
 	float timeCounter = 0.0;
 	const float kStepTime = 0.5;
 
-	unsigned int gameWidth;
-	unsigned int gameHeight;
-	unsigned int startLength;
+	int gameWidth;
+	int gameHeight;
+	int startLength;
 
 	std::vector<std::vector<GridState>> grid;
 	std::vector<std::pair<GridCoord, GridState>> gridUpdates;
