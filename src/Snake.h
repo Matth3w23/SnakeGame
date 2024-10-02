@@ -27,7 +27,7 @@ enum SnakeMoveResult {
 class Snake {
 public:
 	//constructor and destructor
-	Snake(std::vector<std::vector<GridState>>& grid, GridCoord startPos = { 3,3 }, unsigned int length = 3, GridDirection startDirection = RIGHT); //length >= 3
+	Snake(std::vector<std::vector<GridState>>& grid, GridCoord startPos = { 3,3 }, int length = 3, GridDirection startDirection = RIGHT); //length >= 3
 	~Snake();
 
 	//calculates the moved into place and if snake has eaten a cherry

@@ -8,7 +8,7 @@ char* SnakeInitialisationException::what() {
 }
 */
 
-Snake::Snake(std::vector<std::vector<GridState>>& grid, GridCoord startPos, unsigned int length, GridDirection startDirection) 
+Snake::Snake(std::vector<std::vector<GridState>>& grid, GridCoord startPos, int length, GridDirection startDirection) 
 	: grid(grid)
 	, snakeDirection(startDirection) {
 

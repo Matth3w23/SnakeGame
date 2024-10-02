@@ -1,6 +1,6 @@
 #pragma once
-#include<vector>
-#include<queue>
+#include <vector>
+#include <queue>
 #include <random>
 
 #include "GridDefinitions.h"
