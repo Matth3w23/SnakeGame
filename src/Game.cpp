@@ -6,8 +6,8 @@ Game::Game(unsigned int width, unsigned int height, unsigned int length)
     : gameWidth(width)
     , gameHeight(height)
     , startLength(length)
-    , widthRandom(1, width)
-    , heightRandom(1, height) {
+    , widthRandom(0, width-1)
+    , heightRandom(0, height-1) {
 }
 
 Game::~Game() {
@@ -26,6 +26,8 @@ void Game::init() {
     }
 
     snakes.push_back(Snake(grid, {startLength-1, gameHeight/2}, startLength));
+
+    getNewCherry(snakes);
 }
 
 void Game::processInput(float dt) {
@@ -81,11 +83,12 @@ void Game::stepGame() {
     }
 
     //move snakes forward and empty moved out of spaces
+    bool needNewCherry = false;
     std::vector<GridCoord> movedIntoCoords;
     for (Snake& snake : snakes) {
         GridCoord snakeMoveOutSpace = snake.executeMove(snakes);
         if (snakeMoveOutSpace == GridCoord{-1, -1}) { //eaten cherry
-            ; //mark need to get new cherry
+            needNewCherry = true;
         } else {
             grid[snakeMoveOutSpace.x][snakeMoveOutSpace.y] = EMPTY;
         }
@@ -95,11 +98,14 @@ void Game::stepGame() {
         snake.moveDataReset();
     }
 
+    //then fill moved into spaces (to stop overwriting snakes with empty space)
     for (GridCoord coord : movedIntoCoords) {
         grid[coord.x][coord.y] = SNAKE;
     }
 
-    //then fill moved into spaces (to stop overwriting snakes with empty space)
+    if (needNewCherry) {
+        getNewCherry(snakes);
+    }
 
     //TODO: Sort when got rendering and can see if works...
     //move snakes
@@ -127,6 +133,8 @@ bool Game::getNewCherry(std::vector<Snake>& snakes) {
             }
         }
     } while (collision);
+
+    grid[cherryPos.x][cherryPos.y] = CHERRY;
 
     //mark new cherry pos to be updated/rendered
 
