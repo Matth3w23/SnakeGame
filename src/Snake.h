@@ -69,4 +69,6 @@ private:
 	//state when planning a move
 	GridCoord moveToSpace = { -1,-1 };
 	bool willEatCherry = false;
+
+	bool checkOutOfBounds(GridCoord coord);
 };
