@@ -57,7 +57,7 @@ public:
 	void reset();
 private:
 	float timeCounter = 0.0;
-	const float kStepTime = 0.5;
+	const float kStepTime = 0.3;
 
 	int gameWidth;
 	int gameHeight;

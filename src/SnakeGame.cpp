@@ -10,7 +10,7 @@
 const int kWindowWidth = 800;
 const int kWindowHeight = 600;
 const int kGameWidth = 20;
-const int kGameHeight = 10;
+const int kGameHeight = 15;
 const int kSnakeStartLength = 6;
 
 //callback prototypes
