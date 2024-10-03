@@ -28,6 +28,8 @@ void Game::init() {
     snakes.push_back(Snake(grid, {startLength-1, gameHeight/2}, startLength));
 
     getNewCherry(snakes);
+
+    currentGameState = GAME_ACTIVE;
 }
 
 void Game::processInput(float dt) {
@@ -64,7 +66,9 @@ void Game::update(float dt) {
     timeCounter += dt;
     if (timeCounter >= kStepTime) {
         timeCounter -= kStepTime;
-        stepGame();
+        if (currentGameState == GAME_ACTIVE) {
+            stepGame();
+        }
     }
 }
 
@@ -79,6 +83,7 @@ void Game::stepGame() {
     }
 
     if (crashed) {
+        currentGameState = GAME_OVER;
         return;
     }
 
