@@ -63,6 +63,8 @@ private:
 	int gameHeight;
 	int startLength;
 
+	GameState currentGameState;
+
 	std::vector<std::vector<GridState>> grid;
 	std::vector<std::pair<GridCoord, GridState>> gridUpdates;
 	GridCoord cherryPos;
