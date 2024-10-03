@@ -69,14 +69,14 @@ void Snake::planMove(bool wrapAround) {
 		moveToSpace = { moveToSpace.x % gridWidth, moveToSpace.y % gridHeight };
 	}
 
-	if (grid[moveToSpace.x][moveToSpace.y] == CHERRY) {
+	if (!checkOutOfBounds(moveToSpace) && grid[moveToSpace.x][moveToSpace.y] == CHERRY) { //TODO: Redo order so checkOutOfBounds is not repeated
 		willEatCherry = true;
 	}
 }
 
 bool Snake::testCrash(std::vector<Snake>& snakes) {
 	//check if offscreen
-	if (moveToSpace.x < 0 || moveToSpace.x >= gridWidth || moveToSpace.y < 0 || moveToSpace.y >= gridHeight) {
+	if (checkOutOfBounds(moveToSpace)) {
 		return true;
 	}
 	for (Snake& snake : snakes) {
@@ -130,5 +130,9 @@ bool Snake::checkCollisionWithSelf(GridCoord gridCoord, bool includeMoveTo) {
 
 GridCoord Snake::getSnakeHead() {
 	return snakeBody.back();
+}
+
+bool Snake::checkOutOfBounds(GridCoord coord) {
+	return (coord.x < 0 || coord.x >= gridWidth || coord.y < 0 || coord.y >= gridHeight);
 }
 
